@@ -1,0 +1,43 @@
+class GitesModels extends Database
+{
+    public function getLastGites(){
+        $db = $this->getPDO();
+
+        $sql = $db->query ("SELECT * FROM gites ORDER BY `id_gite` DESC LIMIT 10");
+?>
+
+<div class="md:flex md:grid md:grid-flow-col md:grid-cols-2 grid-rows-2">
+
+    <?php 
+    
+    $sql = "SELECT * FROM gites ORDER BY `id_gite` DESC LIMIT 4";
+            foreach($sql as $row){
+
+            $date_formater = new DateTime($row['date_depart']); 
+    ?>
+
+    <div class="flex m-10">
+            <img class="rounded" src="<?= $row['img_gite'] ?>" alt="">
+
+            <div class="flex flex-col p-5">
+                <p><?php echo $row['name_gite'] ?></p>
+                <p><?php echo $row['description_gite'] ?> </p>
+                <p><?php echo 'Prix : ' .$row['price_gite'] ?> €</p>
+            </div>    
+    </div>
+</div>
+
+
+<?php
+        }
+    }
+
+
+//public function PriceGites(){
+    //$db = $this->getPDO();
+
+   // $sql = $db->query ("SELECT price_gite FROM gites");
+
+
+
+}
