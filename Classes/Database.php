@@ -92,9 +92,24 @@ class Database{
                 echo "Les champs n'ont pas été remplit";
                 }
 
-            
-        
+
+
         }
+public function found(){
+       $db=$this->getPDO();
+       $sql="SELECT * FROM gites";
+       $addresse=htmlspecialchars(strip_tags($_POST['addresse']));
+    $date_arrivee=$_POST['date_arrivee'];
+    $date_depart=$_POST['date_depart'];
+    $nbr_personne=$_POST['nbr_personne'];
+    $img_gite=$this->$_POST['img_gite'];
 
+    if (!empty($addresse) AND !empty($date_arrivee) AND !empty($date_depart) AND !empty($nbr_personne) AND !empty($img_gite)){
+    if ($addresse===$_POST['addresse'] AND $date_arrivee===$_POST['date_arrivee'] AND $date_depart===$_POST['date_depart'] AND $nbr_personne===$_POST['nbr_personne'] AND $img_gite===$_POST['img_gite']){
+        echo "les gites disponibles";
+    }else{
+        echo "desolé les valeurs sont pas valides";
+    }
 }
-
+}
+}
